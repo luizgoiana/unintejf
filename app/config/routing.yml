@@ -1,0 +1,103 @@
+footer:
+    resource: "@FooterBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+contato:
+    resource: "@ContatoBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+admin:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+
+
+admin/home:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+
+
+admin/home/update:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+
+
+admin/sobre:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+
+admin/sobre/update:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+
+admin/sobre/add:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+
+admin/sobre/delete:
+     resource: "@AdminBundle/Controller/"
+     type:     annotation
+
+admin/especialidades:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+
+admin/especialidades/add:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+
+admin/especialidades/preparaedicao:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+
+admin/estrutura:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+
+admin/estrutura/add:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+
+admin/estrutura/delete:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+
+admin/blogpostage:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+
+admin/blog:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+
+/:
+    resource: "@HomeBundle/Controller/"
+    type:     annotation
+
+/cursos:
+    resource: "@SobreBundle/Controller/"
+    type:     annotation
+
+/inscricao:
+    resource: "@EspecialidadeBundle/Controller/"
+    type:     annotation
+
+/portal:
+    resource: "@EstruturaBundle/Controller/"
+    type:     annotation
+
+/blog:
+    resource: "@BlogBundle/Controller/"
+    type:     annotation
+
+/contato:
+    resource: "@ContatoBundle/Controller/"
+    type:     annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

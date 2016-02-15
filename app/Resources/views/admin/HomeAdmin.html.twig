@@ -1,0 +1,62 @@
+{% extends 'admin/LayoutAdmin.html.twig' %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data" name="form1" action="/admin/home/update" xmlns="http://www.w3.org/1999/html">
+
+       <div class="page-title">
+           <p class="title">Home</p>
+       </div>
+
+        <section>
+            <div class="group-large">
+                <p class="subtitle">Banner do Topo</p>
+                <div class="picturebox-container">
+                    {% for image in imagesbannerhome %}
+                        <div class="picture-box">
+                            <a href="#modalImage">
+                                <img onclick="setImageModal('{{ asset(image.path) }}')" src="{{ asset(image.thumbpath) }}">
+                            </a>
+                            <a class="link" href="{{ path('admin.home.delete',{'id': image.id}) }}"> Remover </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div id="modalImage" class="modalImage">
+                <div>
+                <a href="#close" title="Close" class="close">X</a>
+                    <img width="1000px" id="imageOfModal" src="">
+                </div>
+            </div>
+
+            <div class="group-large">
+                <input type="file" name="imageBannerTop"/>
+                <a href="#" class="btn btn-primary link" onclick="submitControl('/admin/home/add')">Adicionar</a>
+            </div>
+
+        </section>
+
+        <section>
+            <div class="group-medium">
+                <p class="subtitle">Especialidades</p>
+                <textarea name="specialtyShortDescription">{{ home.specialtyShortDescription }}</textarea>
+            </div>
+        </section>
+
+        <section>
+            <div class="group-medium">
+                <p class="subtitle">Banner do Meio:</p>
+                <div id="wrapperBannerMiddleContent">
+                    <p class="labelField">Digite uma frase para ser exibida no banner ao centro da página:</p>
+                    <input class="inputText" name="bannerMiddleFrase" value="{{ home.bannerMiddleFrase }}" type="text"/>
+                </div>
+            </div>
+        </section>
+
+        <div>
+           <input style="float:right;" type="submit" value="Salvar" class="btn btn-primary link" />
+        </div>
+
+    </form>
+
+{% endblock %}

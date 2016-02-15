@@ -1,0 +1,31 @@
+{% extends 'admin/LayoutAdmin.html.twig' %}
+
+{% block content %}
+
+    <form method="post" enctype="multipart/form-data" name="form1">
+        <div class="page-title">
+            <p class="title">Posts:</p>
+            <div class="btn-novo">
+                <a class="btn btn-primary" href='/admin/blogpostage'>Novo</a>
+            </div>
+        </div>
+
+        <section>
+            <div style="width: 80%; margin: 0 auto;">
+                <div id="posts">
+                    {% for post in posts %}
+                        <div class="post">
+                            <div style="clear: both;">
+                                <img src="{{ asset(post.thumbpath) }}"/><br/>
+                                <label class="post-titulo"> {{ post.titulo }} </label><br/>
+                                <label class="post-descricao"> {{ post.postpart }} </label>
+                            </div>
+                            <div class="circle" onclick="window.location='{{ path('admin.blogpostage', {'idPost': post.id}) }}'" title="editar"> <img src="/img/editor_pencil.png"/> </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </form>
+
+{% endblock %}

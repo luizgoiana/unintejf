@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cursos</title>
+    {% include 'metas.html.twig' %}
+</head>
+<body>
+
+{% include 'header.html.twig' %}
+
+<div class="container">
+    <h1 class="title">Cursos:</h1>
+</div><!--end .container-->
+
+<div class="container">
+    <div class="wedo">
+        <h2 class="title">Graduação:</h2>
+        <ul>
+            {% for curso in listCursos %}
+                {% if curso.tipo==0 %}
+                    <a href="{{ curso.url }}" target="_blank"> <li><span>✔</span> {{ curso.descricao }}</li> </a>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div><!--end .wedo-->
+</div><!--end .container-->
+
+<div class="container">
+    <div class="wedo">
+        <h2 class="title">Pós-Graduação:</h2>
+        <ul>
+            {% for curso in listCursos %}
+                {% if curso.tipo==1 %}
+                    <a href="{{ curso.url }}"> <li><span>✔</span> {{ curso.descricao }}</li> </a>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div><!--end .wedo-->
+</div><!--end .container-->
+
+<div id="scroller">
+    {% for estrutura in estruturas %}
+        <a class="fresco" data-fresco-group="estrutura" href="{{ estrutura.imagepath }}">
+            <img src="{{ estrutura.thumbpath }}" alt="">
+        </a>
+    {% endfor %}
+</div><!--end #scroller-->
+
+{{ render(controller('FooterBundle:Default:footer')) }}
+
+<script>
+    (function() {
+        $(".magnifier").on("click", function(e) {
+            e.preventDefault();
+            $(".search").animate({width: "toggle"}).focus();
+            if( $("header .menu ul").is(":visible") ) {
+                $("header .menu ul").hide();
+            } else {
+                $("header .menu ul").show();
+            }
+
+            var width = $(window).width();
+
+            if (width <= 710) {
+                $("header .menu ul").hide();
+            }
+
+            if ($("header .hamburger").is(":visible")) {
+                $("header .hamburger").hide();
+            } else {
+                $("header .hamburger").show();
+            }
+
+        });
+    }());
+
+    $(".hamburger").on("click", function(){
+        $(this).toggleClass("checked");
+    });
+
+    document.getElementById('sobre').style.color="#FFC600";
+</script>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.titulo }} - Cláudia Cabrini</title>
+    {% include 'metas.html.twig' %}
+</head>
+<body>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.4";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, "script", "facebook-jssdk"));</script>
+
+{% include 'header.html.twig' %}
+
+    <div class="container">
+        <div id="blog-internal">
+
+            <h1 class="title">
+                {{ post.titulo }}
+                <a href="/blog"><img src="{{ asset('img/site/icons/previous.png') }}"></a>
+            </h1>
+
+            <div class="post">
+                <img class="img" src="{{ asset(post.thumbpath) }}" alt="">
+                {{ post.post | raw }}
+
+                <hr>
+
+                <div class="fb-comments" data-href="http://developers.facebook.com/Claudia-Cabrini" data-numposts="5"></div>
+
+            </div><!--end .post-->
+
+            <aside class="sidebar">
+                <div class="links">
+                    <h3 class="title"><img src="{{ asset('img/site/icons/return.png') }}"> Arquivos</h3>
+                    {% for datafilter in datafilters %}
+                        <a href="/blog/{{ datafilter.date.format('Y')}}/{{ datafilter.date.format('m')}}">
+                            <p>{{ datafilter.date|date("m - Y") }}</p>
+                        </a>
+                    {% endfor %}
+                </div><!--end .links-->
+            </aside><!--end. sidebar-->
+
+            <div class="container" style="clear:both;">
+                <h3 class="title">Leia também...</h3>
+            </div><!--end .container-->
+            <div id="latest-blog">
+                <div class="container">
+                    <div class="wrapper">
+                        {% for postage in postages %}
+                            {% if post.id != postage.id %}
+                                <div class="news">
+                                    <a href="/blogview/{{ postage.id }}">
+                                        <img class="img" src="{{ asset(postage.thumbpath) }}" alt="">
+                                        <div class="text">
+                                            <h4>{{ postage.titulo }}</h4>
+                                            <p>{{ postage.postpart }}</p>
+                                        </div><!--end .text-->
+                                    </a>
+                                </div><!--end .news-->
+                            {% endif %}
+                        {% endfor %}
+                    </div><!--end .wrapper-->
+                    <a href="/blog">
+                        <button class="btn-link">Ver mais notícias</button>
+                    </a>
+                </div><!--end .container-->
+            </div><!--end #lastest-blog-->
+
+        </div><!--end #blog-->
+    </div><!--end .container-->
+
+    {{ render(controller('FooterBundle:Default:footer')) }}
+
+    <script>
+        (function() {
+            $(".magnifier").on("click", function(e) {
+                e.preventDefault();
+                $(".search").animate({width: "toggle"}).focus();
+                if( $("header .menu ul").is(":visible") ) {
+                    $("header .menu ul").hide();
+                } else {
+                    $("header .menu ul").show();
+                }
+
+                var width = $(window).width();
+
+                if (width <= 710) {
+                    $("header .menu ul").hide();
+                }
+
+                if ($("header .hamburger").is(":visible")) {
+                    $("header .hamburger").hide();
+                } else {
+                    $("header .hamburger").show();
+                }
+
+            });
+        }());
+
+        $(".hamburger").on("click", function(){
+            $(this).toggleClass("checked");
+        });
+
+        $(function() {
+            var $myWrap = $("#blog-internal .post");
+            width = $myWrap.width();
+            $(".fb-comments").attr("data-width", width);
+        });
+
+        document.getElementById('blog').style.color="#FFC600";
+
+    </script>
+
+</body>
+</html>

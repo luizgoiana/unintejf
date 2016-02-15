@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal do Aluno</title>
+    {% include 'metas.html.twig' %}
+</head>
+<body>
+
+{% include 'header.html.twig' %}
+
+<div class="container">
+    <div id="structure">
+
+        <h1 class="title">Portal do Aluno</h1>
+        <div style="text-align: center">
+            <div class="item-botao"><a href="http://unico.facinter.br/index.php" target="_blank"><img src="img/site/bt_unico.png" class="efeito"></a></div>
+            <div class="item-botao"><a href="http://www.uninter.com/amigos/ead/index.php" target="_blank"><img src="img/site/bt_amigo.png" class="efeito"></a></div>
+            <div class="item-botao"><a href="http://univirtus-277877701.sa-east-1.elb.amazonaws.com/ava/web/" target="_blank"><img src="img/site/bt_univirtus.png" class="efeito"></a></div>
+        </div>
+    </div><!--end #structure-->
+</div><!--end .container-->
+
+{{ render(controller('FooterBundle:Default:footer')) }}
+
+<script src="{{ asset('res/bxslider.min.js') }}"></script>
+
+<script>
+    (function() {
+        $(".magnifier").on("click", function(e) {
+            e.preventDefault();
+            $(".search").animate({width: "toggle"}).focus();
+            if( $("header .menu ul").is(":visible") ) {
+                $("header .menu ul").hide();
+            } else {
+                $("header .menu ul").show();
+            }
+
+            var width = $(window).width();
+
+            if (width <= 710) {
+                $("header .menu ul").hide();
+            }
+
+            if ($("header .hamburger").is(":visible")) {
+                $("header .hamburger").hide();
+            } else {
+                $("header .hamburger").show();
+            }
+
+        });
+    }());
+
+    $(".hamburger").on("click", function(){
+        $(this).toggleClass("checked");
+    });
+
+    $(document).ready(function(){
+        $("#banners").bxSlider({
+            mode: "fade",
+            auto: true,
+            pause: 5000,
+            pager: false,
+            controls: false
+        });
+    });
+
+    document.getElementById('estrutura').style.color="#FFC600";
+
+</script>
+
+</body>
+</html>

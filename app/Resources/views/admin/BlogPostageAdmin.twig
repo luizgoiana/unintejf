@@ -1,0 +1,50 @@
+{% extends 'admin/LayoutAdmin.html.twig' %}
+
+{% block content %}
+    <div class="page-title">
+        <p class="title">Blog</p>
+    </div>
+
+    <div class="separator"></div>
+
+    <section>
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+        <div class="group-large">
+            <p class="subtitle">Postagem:</p>
+
+            <div class="group">
+                {{ form_widget(form.post) }}
+            </div>
+        </div>
+
+        <div class="group-medium">
+            <p class="subtitle">Título</p>
+            {{ form_widget(form.titulo) }}
+
+            <p style="margin-top: 20px" class="subtitle">Tags para pesquisa: (separadas por ';')</p>
+            {{ form_widget(form.tags) }}
+        </div>
+
+        <div class="group-medium">
+            <p class="subtitle">Imagem:</p>
+            {% if blogpost.thumbpath %}
+                <a href="#modalImage">
+                    <img width="150px" style="margin-bottom: 10px" onclick="setImageModal('{{ asset(blogpost.image) }}')" src="{{ asset(blogpost.thumbpath) }}">
+                </a>
+            {% endif %}
+            {{ form_widget(form.image) }}
+        </div>
+
+        {{ form_end(form) }}
+
+    </section>
+
+    <div id="modalImage" class="modalImage">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <img width="1000px" id="imageOfModal" src="">
+        </div>
+    </div>
+
+{% endblock %}

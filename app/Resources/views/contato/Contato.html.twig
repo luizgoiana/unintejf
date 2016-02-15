@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Contato</title>
+    {% include 'metas.html.twig' %}
+</head>
+<body>
+
+{% include 'header.html.twig' %}
+
+<div class="container">
+    <div id="contact">
+
+        <h1 class="title">Contato</h1>
+
+        <form method="post" enctype="multipart/form-data" name="form1" action="/contato/send">
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div id="flash-notice">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            <p>Estamos aguardando o seu contato. Será um prazer atendê-lo.</p>
+            <input type="text" name="nome" placeholder="NOME">
+            <input type="email" name="email" placeholder="E-MAIL">
+            <input type="tel" name="telefone" id="telefone" placeholder="TELEFONE" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}">
+            <script type="text/javascript">$("#telefone").mask("(00) 0000-00009");</script>
+            <textarea name="mensagem" placeholder="DIGITE AQUI SUA MENSAGEM"></textarea>
+            <input type="submit" value="enviar">
+        </form>
+
+        <div class="others">
+            <h2>outros meios<br>de contato</h2>
+            <br>
+            <p>Av. dos Andradas, 547<br>Sala 703 - Centro<br>Juiz de Fora - MG</p>
+            <br>
+            <p>Telefone:</p>
+            <p class="tel">
+                <span>(32) 3313-8544</span>
+            </p>
+            <br>
+            <p><span>Geral</span></p>
+            <p>contato@uninterjuizdefora.com.br</p>
+        </div><!--end .others-->
+
+    </div><!--end #contact-->
+</div><!--end .container-->
+
+{{ render(controller('FooterBundle:Default:footer')) }}
+
+<script>
+    (function() {
+        $(".magnifier").on("click", function(e) {
+            e.preventDefault();
+            $(".search").animate({width: "toggle"}).focus();
+            if( $("header .menu ul").is(":visible") ) {
+                $("header .menu ul").hide();
+            } else {
+                $("header .menu ul").show();
+            }
+
+            var width = $(window).width();
+
+            if (width <= 710) {
+                $("header .menu ul").hide();
+            }
+
+            if ($("header .hamburger").is(":visible")) {
+                $("header .hamburger").hide();
+            } else {
+                $("header .hamburger").show();
+            }
+
+        });
+    }());
+
+    $(".hamburger").on("click", function(){
+        $(this).toggleClass("checked");
+    });
+
+    document.getElementById('contato').style.color="#FFC600";
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+
+/*Login*/
+.label-login{
+   color:  #676a6c;
+}
+
+.centralize-login{
+    margin: 0  auto;
+    width: 300px;
+}
+
+.centralize-login > input{
+    margin-top: 15px !important;
+    width: 300px;
+}
+
+.centralize-login > small{
+    margin-top: 15px;
+}

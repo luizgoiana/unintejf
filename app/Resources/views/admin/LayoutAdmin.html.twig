@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Painel de Controle</title>
+        <script src="{{ asset('res/jquery-2.1.4.min.js') }}"></script>
+        <script src="{{ asset('res/bootstrap335/js/bootstrap.js') }}"></script>
+        <script src="{{ asset('res/script.js') }}"></script>
+        <link rel="stylesheet" type="text/css" href="{{ asset('res/estilo.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('res/bootstrap335/css/bootstrap.css') }}"/>
+
+
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+    <div class="header">
+        <div class="logo-box">
+            <a href="index.html" class="logo-text"><span>Administrador</span></a>
+        </div>
+        <div class="outer-box">
+            <ul id="logout">
+                 <a id="logout-text" href="/logout">
+                     <span class="glyphicon glyphicon-arrow-left">Logout</span>
+                 </a>
+            </ul>
+        </div>
+    </div>
+        <div id="container">
+            <nav id="menu">
+                <ul class="list-menu">
+                    <li>
+                        <a href="/admin/home" class="waves-effect waves-button">
+                            <span class="menu-icon glyphicon glyphicon-home"></span>
+                            <p>Home</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/sobre" class="waves-effect waves-button">
+                            <span class="menu-icon glyphicon glyphicon-edit"></span>
+                            <p>Sobre</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/especialidades" class="waves-effect waves-button">
+                            <span class="menu-icon glyphicon glyphicon-user"></span>
+                            <p>Especialidades</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/estrutura" class="waves-effect waves-button">
+                            <span class="menu-icon glyphicon glyphicon-user"></span>
+                            <p>Estrutura</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/blog" class="waves-effect waves-button">
+                            <span class="menu-icon glyphicon glyphicon-user"></span>
+                            <p>Blog</p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div id="content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+        <footer>
+            <div class="footer-top"></div>
+            Cláudia Cabrini - 2015
+        </footer>
+    </body>
+</html>

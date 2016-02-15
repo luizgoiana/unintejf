@@ -1,0 +1,49 @@
+{% extends 'admin/LayoutAdmin.html.twig' %}
+
+{% block content %}
+
+    <form method="post" enctype="multipart/form-data" name="form1">
+        <div class="page-title">
+            <p class="title">Especialidades</p>
+        </div>
+
+        <section>
+            <div class="group-large">
+                <p class="subtitle">Especialidades</p>
+
+                <div id="especialidades">
+                    {% for especialidade in especialidades %}
+                        <div class="especialidade">
+                            <div class="circle" title="deletar" onclick="showDialogDelete('/admin/especialidades/delete',{{ especialidade.id }});window.location='#modalDeletaEspecialidade'"> <img src="/img/delete.png"/> </div>
+                            <div class="circle" title="editar" onclick="showModal(this);getEspecialidadeDinamyc({{ especialidade.id }})"> <img src="/img/editor_pencil.png"/> </div>
+                            <div style="clear: both;">
+                            <img src="{{ asset(especialidade.imagem) }}"/><br/>
+                            <label class="especialidadeTitulo"> {{ especialidade.titulo }} </label><br/>
+                            <label class="especialidadeDescricao"> {{ especialidade.descricao }} </label>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div id="box-toggle">
+                    <div class="tgl">
+                        <input type="text" name="titulo" placeholder="Digite o Título..."/>
+                        <input type="text" name="descricao" placeholder="Digite a descrição..."/>
+                        <input type="file" name="icoEspecialidade"/>
+                        <img src="" name="icoEspecialidadePreview" width="100">
+                        <input type="button" name="submitEsp" onclick="submitControl('/admin/especialidades/add')" value="Ok" />
+                    </div>
+                </div>
+
+
+                <div id="modalDeletaEspecialidade" class="modalDialog">
+                    <div>
+                        <h2>Você tem certeza?</h2>
+                        <a id="confirmDeleteSpecialty" href="#" onclick="submitControl('/admin/especialidades/delete')">Sim</a> | <a href="#close" title="Cancelar">Não</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+
+{% endblock %}

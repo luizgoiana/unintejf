@@ -1,0 +1,59 @@
+{% extends 'admin/LayoutAdmin.html.twig' %}
+
+{% block content %}
+    <form method="post" name="form1" enctype="multipart/form-data" action="/admin/sobre/update">
+
+        <div class="page-title">
+            <p class="title">Sobre</p>
+        </div>
+
+        <div class="wrapper">
+            <section>
+
+                <div class="group-large">
+                    <p class="labelField">O que Fazemos:</p>
+
+                    <table id="o_que_fazemos">
+
+                        {% for s in listCursos %}
+                            <tr>
+                                <td>{{ s.descricao }}</td>
+                                <td><a class="linkTable" href="{{ path('admin.sobre.delete',{'id': s.id}) }}"> Remover </a></td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+
+                    <div id="box-toggle" >
+                        <div class="tgl" >
+                            <p class="labelField">Curso:</p>
+                            <input type="text" name="cursoNome" />
+                            <p class="labelField">Link:</p>
+                            <input type="text" name="cursoLink" />
+                            <p class="labelField">Tipo do curso:</p>
+                            <select id="cmbType" name="cmbType" >
+                                <option value="0">Graduação</option>
+                                <option value="1">Pós-Graduação</option>
+                            </select>
+                            <input type="button" class="btn btn-primary" value="+" onclick="submitControl('/admin/sobre/add')" />
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+        </div>
+
+        <div id="modalImage" class="modalImage">
+            <div>
+                <a href="#close" title="Close" class="close">X</a>
+                <img width="1000px" id="imageOfModal" src="">
+            </div>
+        </div>
+
+        <div>
+            <input style="float:right;" class="btn btn-primary link" type="button" onclick="submitControl('/admin/sobre/update')" value="Salvar" />
+        </div>
+
+    </form>
+
+{% endblock %}

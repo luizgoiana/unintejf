@@ -1,0 +1,42 @@
+{% extends 'admin/LayoutAdmin.html.twig' %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data" name="form1" xmlns="http://www.w3.org/1999/html">
+        <div class="page-title">
+            <p class="title">Estrutura</p>
+        </div>
+
+        <section>
+            <div class="group-large">
+                <p class="subtitle">Fotos:</p>
+
+                 <div class="group">
+                    <div class="picturebox-container">
+                        {% for estrutura in estruturas %}
+                            <div class="picture-box">
+                                <a href="#modalImage">
+                                <img onclick="setImageModal('{{ asset(estrutura.imagepath) }}')" src="{{ asset(estrutura.thumbpath) }}">
+                                </a>
+                                <a class="link-remover" href="{{ path('admin.estrutura.delete',{'id': estrutura.id}) }}"> Remover </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                 </div>
+
+                <div id="modalImage" class="modalImage">
+                    <div>
+                    <a href="#close" title="Close" class="close">X</a>
+                        <img width="1000px" id="imageOfModal" src="">
+                    </div>
+                </div>
+
+                <div class="group">
+                    <input type="file" class="inputFile" name="imageEstrutura"/>
+                    <a href="#" class="btn btn-primary link" onclick="submitControl('/admin/estrutura/add')">+</a>
+                </div>
+            </div>
+        </section>
+
+    </form>
+
+{% endblock %}

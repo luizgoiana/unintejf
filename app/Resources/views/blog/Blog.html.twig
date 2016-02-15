@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    {% include 'metas.html.twig' %}
+</head>
+<body>
+
+{% include 'header.html.twig' %}
+
+<div class="container">
+    <div id="blog">
+
+        <h1 class="title">Blog</h1>
+
+
+        <div class="posts">
+            {% for post in postages %}
+                <div style="min-height: 507px;" class="news">
+                    <a href="/blogview/{{ post.id }}">
+                        <img class="img" src="{{ asset(post.thumbpath) }}" alt="">
+                        <div class="text">
+                            <h4>{{ post.titulo }}</h4>
+                            <p class="date">{{ post.date.format('d/m/Y') }}</p>
+                            <p class="short">{{ post.postpart|raw }}</p>
+                            <p class="extra">Tags: <span>{{ post.tags }}</span></p>
+                        </div><!--end .text-->
+                    </a>
+                </div><!--end .news-->
+            {% endfor %}
+            {% if loadmore %}
+                <a href="/blog/{{ max }}"><button>carregar mais</button></a>
+            {% endif %}
+        </div><!--end .posts-->
+
+        <aside class="sidebar">
+            <div class="links">
+                <h3 class="title"><img src="{{ asset('img/site/icons/return.png') }}"> Arquivos</h3>
+                {% for datafilter in datafilters %}
+                    <a href="/blog/{{ datafilter.date.format('Y')}}/{{ datafilter.date.format('m')}}">
+                        <p>{{ datafilter.date|date("m - Y") }}</p>
+                    </a>
+                {% endfor %}
+            </div><!--end .links-->
+        </aside><!--end. sidebar-->
+
+    </div><!--end #blog-->
+</div><!--end .container-->
+
+{{ render(controller('FooterBundle:Default:footer')) }}
+
+<script>
+    (function() {
+        $(".magnifier").on("click", function(e) {
+            e.preventDefault();
+            $(".search").animate({width: "toggle"}).focus();
+            if( $("header .menu ul").is(":visible") ) {
+                $("header .menu ul").hide();
+            } else {
+                $("header .menu ul").show();
+            }
+
+            var width = $(window).width();
+
+            if (width <= 710) {
+                $("header .menu ul").hide();
+            }
+
+            if ($("header .hamburger").is(":visible")) {
+                $("header .hamburger").hide();
+            } else {
+                $("header .hamburger").show();
+            }
+
+        });
+    }());
+
+    $(".hamburger").on("click", function(){
+        $(this).toggleClass("checked");
+    });
+
+    document.getElementById('blog').style.color="#FFC600";
+
+</script>
+
+</body>
+</html>
